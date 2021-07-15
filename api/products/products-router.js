@@ -56,11 +56,7 @@ router.delete('/removelisting/:owner_id/:product_id', checkId, checkOwnerId, (re
                 res.status(404).json({ message: `the listing with the specified ID could not be found` })
             }
         })
-        .catch(err => {
-            res.status(500).json({
-                message: err.message
-            })
-        })
+        .catch(next)
 })
 
 module.exports = router
