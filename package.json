@@ -10,7 +10,11 @@
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
-    "heroku-postbuild": "npm i && npm run build"
+    "migrateh": "heroku run knex migrate:latest -a bamazonbackend",
+    "rollbackh": "heroku run knex migrate:rollback -a bamazonbackend",
+    "databaseh": "heroku pg:psql -a bamazonbackend",
+    "seedh": "heroku run knex seed:run -a bamazonbackend",
+    "deploy": "git push heroku main"
   },
   "repository": {
     "type": "git",
