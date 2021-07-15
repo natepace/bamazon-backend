@@ -10,7 +10,7 @@
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run",
-    "heroku-postbuild": "npm i && npm run build && cd api npm run build"
+    "heroku-postbuild": "npm i && npm run build"
   },
   "repository": {
     "type": "git",
