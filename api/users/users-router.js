@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const Users = require('./users-model.js')
-const tokenBuilder = require('../middleware/tokenbuilder.js')
+const { tokenBuilder, restrict } = require('../middleware/tokenbuilder.js')
 const bcrypt = require('bcryptjs')
 const {
     checkId,
@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-router.get('/:user_id', checkId, (req, res, next) => {
+router.get('/:user_id', checkId, restrict, (req, res, next) => {
     const id = req.params.user_id
     Users.getById(id)
         .then(user => {
@@ -68,7 +68,7 @@ router.post('/login', validateLogin, confirmLogin, (req, res, next) => {
 
 })
 
-router.put('/:user_id', checkId, (req, res, next) => {
+router.put('/:user_id', checkId, restrict, (req, res, next) => {
     const { username,
         name,
         email_address,
@@ -97,7 +97,7 @@ router.put('/:user_id', checkId, (req, res, next) => {
 
 })
 
-router.delete('/:user_id', checkId, (req, res, next) => {
+router.delete('/:user_id', checkId, restrict, (req, res, next) => {
     Users.deleteUser(req.params.user_id)
         .then(user => {
             res.status(200).json({
