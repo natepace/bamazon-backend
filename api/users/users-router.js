@@ -57,7 +57,7 @@ router.post('/register', checkUnique, confirmRegistration, (req, res, next) => {
 })
 
 router.post('/login', validateLogin, confirmLogin, (req, res, next) => {
-    const { username } = req.body.username
+    const username = req.body.username
     Users.getBy({ username })
         .then(([user]) => {
             const id = user.user_id
